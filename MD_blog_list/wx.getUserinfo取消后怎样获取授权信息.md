@@ -30,7 +30,12 @@ K -->|yes or no| D
 ###### app.js
 ```
 onLaunch: function () {
+    this.login()
+  },
+  login(){
     var that = this;
+    // 小程序调用wx.login() 获取 临时登录凭证code ，并回传到开发者服务器。
+    // 开发者服务器以code换取 用户唯一标识openid 和 会话密钥session_key。
     var openid = wx.getStorageSync('openid');
     if (!openid) {
       wx.login({
@@ -38,7 +43,7 @@ onLaunch: function () {
           console.log("登录成功.msg:", res.errMsg, ",code:", res.code);
 
           wx.request({
-            url: config.oppenUrl,  // 在demo/utils/require.js 里面配置请求url
+            url: config.oppenUrl,
             data: {
               code: res.code
             },
@@ -65,6 +70,7 @@ onLaunch: function () {
       });
     }
   },
+  ...
 
 ```
 ###### index.wxml
@@ -88,38 +94,34 @@ openSetting |	打开授权设置页|	2.0.7
 ```
 //  获取用户信息
   bindGetUserInfo: function (e) {
-    if (e.detail.userInfo) {
-      this.getSet(e.detail.userInfo)
+    if (e.detail.userInfo) {     
+      // 授权后的调用
+      var userid = wx.getStorageSync('userid')
+      if (userid) {
+        this.suresub()
+      } else {
+        var data = {
+          openid: wx.getStorageSync('openid'),
+          userinfo: e.detail.userInfo
+        }
+        app.request(config.addUser, data, 'GET').then(res => {
+          if (res.user_id > 0) {
+            wx.setStorageSync('userid', res.user_id)
+            this.suresub()
+          }
+        }).catch((err) => {
+          wx.showToast({
+            title: err,
+            icon: 'none'
+          })
+        })
+      }
     } else {
       this.openSet()
     }
   },
   
-  //  授权成功后的调用
-  getSet(userinfo) {
-    var userid = wx.getStorageSync('userid')
-    if (userid) {
-      this.suresub()
-    } else {
-      var data = {
-        openid: wx.getStorageSync('openid'),
-        userinfo: userinfo
-      }
-      app.request(config.addUser, data, 'GET').then(res => {
-        if (res.user_id > 0) {
-          wx.setStorageSync('userid', res.user_id)
-          this.suresub()
-        }
-      }).catch((err) => {
-        wx.showToast({
-          title: err,
-          icon: 'none'
-        })
-      })
-    }
-  },
-  
-  //  拒绝授权后发起授权、
+   //  拒绝授权后发起授权、
   openSet() {
     var that = this;
     wx.showModal({
@@ -132,12 +134,23 @@ openSetting |	打开授权设置页|	2.0.7
         if (res.confirm) {
           wx.openSetting({
             success: function (res) {
+              console.log(res);
               if (res.authSetting["scope.userInfo"]) {
-                that.getSet("");
+                wx.showToast({
+                  title: '用户信息获取成功，请重新提交',
+                  icon:'none'
+                })
+                app.login()
+
               } else {
                 that.openSet();
               }
             }
+          })
+        }else{
+          wx.showToast({
+            title: '用户信息获取失败，请重新获取',
+            icon: 'none'
           })
         }
       }
