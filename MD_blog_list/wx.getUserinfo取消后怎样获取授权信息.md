@@ -1,6 +1,6 @@
 wx.getUserinfo从2018年4月30号开始不在支持，然后再官方文档里没有找到一个完整的demo去完成这一过程；经过不断探索，写出一个相对完善的demo;  
 效果如下：  
-![demo效果图](https://github.com/liyiyy/MarkdownPhotos/blob/master/images/wxmini-01.gif)
+![demo效果图](https://github.com/liyiyy/MarkdownPhotos/blob/master/images/01/01.gif)
 
 
 逻辑分析：
@@ -21,9 +21,8 @@ E -->|yes| F
 E -->|no| K[opensetting]
 K -->|yes or no| D
 ```
-
-init -> wx:login -> bindgetuserinfo(click btn)获取用户信息，授权成功则获取到，失败则返回重新获取
-
+==煞费苦心的写了这么久的流程图，居然显示不出来，心塞塞。流程图显示如下==
+![流程图](https://github.com/liyiyy/MarkdownPhotos/blob/master/images/01/02.png)
 
 代码如下：
 
@@ -81,7 +80,8 @@ getUserInfo	|获取用户信息，可以从bindgetuserinfo回调中获取到用�
 getPhoneNumber|	获取用户手机号，可以从bindgetphonenumber回调中获取到用户信息，具体说明|	1.2.0
 launchApp|	打开APP，可以通过app-parameter属性设定向APP传的参数具体说明	|1.9.5
 openSetting |	打开授权设置页|	2.0.7
-
+==煞费苦心的写的表格，居然显示不出来，心塞塞。显示如下==
+![流程图](https://github.com/liyiyy/MarkdownPhotos/blob/master/images/01/03.png)
 ###### index.js
 ```
 //  获取用户信息
