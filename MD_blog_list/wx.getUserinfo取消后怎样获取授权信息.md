@@ -1,6 +1,6 @@
 wx.getUserinfo从2018年4月30号开始不在支持，然后再官方文档里没有找到一个完整的demo去完成这一过程；经过不断探索，写出一个相对完善的demo;  
 效果如下：  
-![demo效果图](https://github.com/liyiyy/MarkdownPhotos/blob/master/images/01/01.gif)
+![demo效果图](https://github.com/liyiyy/MarkdownPhotos/blob/master/images/01/wxmini-01.gif)
 
 
 逻辑分析：
