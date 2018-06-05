@@ -79,9 +79,11 @@ share	|触发用户转发，使用前建议先阅读使用指引	|1.2.0
 getUserInfo	|获取用户信息，可以从bindgetuserinfo回调中获取到用户信息|	1.3.0
 getPhoneNumber|	获取用户手机号，可以从bindgetphonenumber回调中获取到用户信息，具体说明|	1.2.0
 launchApp|	打开APP，可以通过app-parameter属性设定向APP传的参数具体说明	|1.9.5
-openSetting |	打开授权设置页|	2.0.7
-==煞费苦心的写的表格，居然显示不出来，心塞塞。显示如下==
-![流程图](https://github.com/liyiyy/MarkdownPhotos/blob/master/images/01/03.png)
+openSetting |	打开授权设置页|	2.0.7  
+
+==煞费苦心的写的表格，居然显示不出来，心塞塞。显示如下==  
+
+![open-type值表](https://github.com/liyiyy/MarkdownPhotos/blob/master/images/01/03.png)
 ###### index.js
 ```
 //  获取用户信息
