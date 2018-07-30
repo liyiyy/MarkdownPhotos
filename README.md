@@ -5,4 +5,4 @@
 #### 博客目录：  
 [01、wx.getUserinfo取消后怎样获取授权信息 (2018-6-5)](https://github.com/liyiyy/Markdown_blog/blob/master/MD_blog_list/wx.getUserinfo%E5%8F%96%E6%B6%88%E5%90%8E%E6%80%8E%E6%A0%B7%E8%8E%B7%E5%8F%96%E6%8E%88%E6%9D%83%E4%BF%A1%E6%81%AF.md)
 
-
+[02、一棵树问题存档(2018-7-30)](https://github.com/liyiyy/Markdown_blog/blob/master/MD_blog_list/%E4%B8%80%E6%A3%B5%E6%A0%91.md)
