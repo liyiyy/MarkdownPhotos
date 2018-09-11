@@ -6,6 +6,7 @@ wx.getUserinfo从2018年4月30号开始不在支持，然后再官方文档里�
 逻辑分析：
 进入小程序时，判断是否存在openid，若有则直接判断是否已经投票，已经投票则直接去结果页；   若没有，则通过wx.login获取并setStorage；    然后判断是否获取用户授权，获取授权就获取用户信息，并判断投票到结果页；   
 未授权就打开授权页面进行授权，拒绝就直接返回，知道用户授权获取到用户信息在提交；
+/*
 ```
 graph TD
 A[init] -->B{have openid}
@@ -22,6 +23,7 @@ E -->|no| K[opensetting]
 K -->|yes or no| D
 ```
 ==煞费苦心的写了这么久的流程图，居然显示不出来，心塞塞。流程图显示如下==
+*/
 ![流程图](https://github.com/liyiyy/MarkdownPhotos/blob/master/images/01/02.png)
 
 代码如下：
@@ -77,7 +79,8 @@ onLaunch: function () {
 ```
 <button type="primary" style='width:90px;' wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">提交</button>
 ```
- 在更新的版本中；必须加 open-type=""  ；值有如下：  
+ 在更新的版本中；必须加 open-type=""  ；值有如下： 
+ /*
  值 | 	说明 | 	最低版本
 ---|---|---
 contact	 |  打开客服会话 |	1.1.0
@@ -88,7 +91,7 @@ launchApp|	打开APP，可以通过app-parameter属性设定向APP传的参数�
 openSetting |	打开授权设置页|	2.0.7  
 
 ==煞费苦心的写的表格，居然显示不出来，心塞塞。显示如下==  
-
+*/
 ![open-type值表](https://github.com/liyiyy/MarkdownPhotos/blob/master/images/01/03.png)
 ###### index.js
 ```
